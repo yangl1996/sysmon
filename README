@@ -1,0 +1,6 @@
+System monitoring scripts for my server.
+
+Usage
+
+Run sh init.sh to create the rrd databases. Run ./daemon.sh in the background
+to record data.
