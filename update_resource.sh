@@ -1,3 +1,5 @@
+#!/bin/sh
+
 rethusage=`ps -p $(pgrep reth) -o "%cpu rss" | tail -1`
 rethmem=`echo $rethusage | cut -f2 -d' '`
 rethmemgb=`expr $rethmem / 1024 / 1024`
