@@ -2,5 +2,6 @@ System monitoring scripts for my server.
 
 Usage
 
-Run sh init.sh to create the rrd databases. Run ./daemon.sh in the background
-to record data.
+init.sh: create the rrd databases.
+daemon.sh: collect data.
+graph.sh: generate plots.
