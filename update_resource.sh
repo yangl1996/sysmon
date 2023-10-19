@@ -8,4 +8,8 @@ lighthouseusage=`ps -p $(pgrep lighthouse) -o "%cpu rss" | tail -1`
 lighthousemem=`echo $lighthouseusage | cut -f2 -d' '`
 lighthousememgb=`expr $lighthousemem / 1024 / 1024`
 lighthousecpu=`echo $lighthouseusage | cut -f1 -d' '`
-rrdtool update resource.rrd N:$rethmemgb:$rethcpu:$lighthousememgb:$lighthousecpu
+diskio=`iostat -I -d -x da3 da4 | tail -2`
+diskread=`echo "$diskio" | awk '{sum += $4} END {print sum}'`
+diskwrite=`echo "$diskio" | awk '{sum += $5} END {print sum}'`
+
+rrdtool update resource.rrd N:$rethmemgb:$rethcpu:$lighthousememgb:$lighthousecpu:$diskread:$diskwrite
