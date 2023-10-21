@@ -1,7 +1,28 @@
-System monitoring scripts for my server.
+sysmon
 
-Usage
+System monitoring for my server.
 
-Run init.sh to create the rrd databases. Then compile the go files and run
-sysmon to collect datapoints and serve HTTP requests on port 9999.
+DESCRIPTION
 
+This is a collection of scripts and programs that I wrote to monitor my server
+running Ethereum consensus and execution clients.
+
+USAGE
+
+The tool uses RRDtool (https://oss.oetiker.ch/rrdtool/) to collect metrics. It
+must be installed for the tool to function. Reading the manpages of RRDtool is
+highly recommended.
+
+Run init.sh to create the round-robin databases. Then compile the go files and
+run sysmon to collect metrics and serve graphs through HTTP on port 9999.
+
+Everything is hardcoded. Some customizations that a user may want to make are
+	- Style of the graphs, such as timespan, colors, and labels. They are
+	  defined in graph.sh.
+	- Amount (duration and granularity) of data stored. They are defined in
+	  init.sh. One may also want to modify main.go to adjust how frequently
+	  metrics are collected.
+	- Address and port to which the HTTP server serving the graphs binds.
+	  They are defined in main.go.
+	- How metrics are collected. They are defined in update_progress.sh
+	  (Ethereum clients) and update_resource.sh (system resources).
